@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portfolio Development & Career Preparation – Your Name</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-alt: #151a2b;
+      --accent: #4f46e5;
+      --accent-soft: rgba(79, 70, 229, 0.1);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --card-bg: #111827;
+      --danger: #f97373;
+      --success: #34d399;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top left, #1f2937, #020617 50%, #000);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.85));
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #6366f1, #4f46e5 40%, #0f172a);
+      box-shadow: 0 0 20px rgba(79, 70, 229, 0.7);
+    }
+
+    .brand-text {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 18px;
+      font-size: 0.9rem;
+    }
+
+    nav a {
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid transparent;
+    }
+
+    nav a:hover {
+      color: var(--text);
+      background: rgba(148, 163, 184, 0.08);
+      border-color: rgba(148, 163, 184, 0.3);
+    }
+
+    .nav-cta {
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: linear-gradient(to right, #4f46e5, #7c3aed);
+      color: white;
+      border: 1px solid rgba(129, 140, 248, 0.9);
+      font-size: 0.85rem;
+      font-weight: 500;
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.35);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    /* Hero / Intro */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
+      gap: 24px;
+      margin-bottom: 38px;
+    }
+
+    .hero-left {
+      padding: 18px 18px 20px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 64, 175, 0.85));
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 25px 60px rgba(15, 23, 42, 0.7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left::after {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(244, 114, 182, 0.2), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(96, 165, 250, 0.28), transparent 55%);
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--muted);
+      font-size: 0.7rem;
+      margin-bottom: 10px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.18);
+    }
+
+    .hero-subtitle {
+      font-size: 0.9rem;
+      color: #e5e7eb;
+      margin-bottom: 10px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: #cbd5f5;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .hero-right {
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 14px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .hero-right-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hero-right-title {
+      font-size: 0.9rem;
+      color: #e5e7eb;
+    }
+
+    .hero-right-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(17, 24, 39, 0.95);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: #e5e7eb;
+    }
+
+    .bubble {
+      padding: 10px 11px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px dashed rgba(75, 85, 99, 0.8);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .status-row {
+      display: flex;
+      gap: 10px;
+      font-size: 0.75rem;
+    }
+
+    .status-tag {
+      padding: 4px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+    }
+
+    .status-tag span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #facc15;
+    }
+
+    /* Cards & grids */
+
+    .card {
+      border-radius: var(--radius-md);
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      padding: 14px 14px 16px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
+    }
+
+    .card + .card {
+      margin-top: 16px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .card-header h2 {
+      margin-bottom: 0;
+      font-size: 1.05rem;
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 4px 0 4px;
+    }
+
+    li {
+      position: relative;
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding-left: 16px;
+      margin: 3px 0;
+    }
+
+    li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.7em;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(129, 140, 248, 0.9);
+    }
+
+    .sub-list {
+      margin-top: 2px;
+      margin-bottom: 2px;
+    }
+
+    .sub-list li {
+      font-size: 0.86rem;
+      color: #9ca3af;
+    }
+
+    .sub-list li::before {
+      background: rgba(148, 163, 184, 0.9);
+    }
+
+    .tagline {
+      font-size: 0.9rem;
+      color: #cbd5f5;
+      margin-bottom: 8px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .chip {
+      font-size: 0.78rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(17, 24, 39, 0.95);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: #e5e7eb;
+    }
+
+    /* Project cards */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .project-card {
+      border-radius: 12px;
+      background: radial-gradient(circle at top, rgba(37, 99, 235, 0.15), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      padding: 10px 11px 11px;
+      font-size: 0.85rem;
+    }
+
+    .project-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .project-title {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    .project-tag {
+      font-size: 0.7rem;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: #cbd5f5;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .project-links a {
+      font-size: 0.76rem;
+      padding: 4px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: #e5e7eb;
+    }
+
+    .project-meta {
+      font-size: 0.76rem;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    /* Media upload section */
+
+    .media-upload {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.2fr);
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .field-label {
+      font-size: 0.8rem;
+      color: #e5e7eb;
+      margin-bottom: 4px;
+    }
+
+    .file-input {
+      font-size: 0.78rem;
+      width: 100%;
+      padding: 7px 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      background: rgba(15, 23, 42, 0.96);
+      color: #e5e7eb;
+    }
+
+    .preview-box {
+      margin-top: 8px;
+      border-radius: 10px;
+      border: 1px dashed rgba(75, 85, 99, 0.9);
+      padding: 8px;
+      background: rgba(15, 23, 42, 0.98);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    video {
+      width: 100%;
+      max-height: 220px;
+      border-radius: 10px;
+    }
+
+    .image-preview-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .image-preview-row img {
+      border-radius: 8px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      object-fit: cover;
+      height: 70px;
+      width: 100%;
+    }
+
+    /* Footer / submission */
+
+    footer {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 14px 20px 26px;
+      background: radial-gradient(circle at top, rgba(30, 64, 175, 0.25), #020617);
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .submit-note {
+      color: #fecaca;
+      font-size: 0.8rem;
+    }
+
+    .btn-submit {
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: linear-gradient(to right, #22c55e, #16a34a);
+      border: 1px solid rgba(34, 197, 94, 0.9);
+      color: #022c22;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .two-column {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .media-upload {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      nav ul {
+        display: none;
+      }
+    }
+
+    @media (max-width: 540px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      .hero-left {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div>
+          <div class="brand-text">Portfolio Development & Career Prep</div>
+          <div style="font-size:0.7rem;color:#9ca3af;">CAPACITI Tech Career Accelerator · AI/ML</div>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#requirements">Requirements</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#capstone">Capstone</a></li>
+          <li><a href="#career">Career Materials</a></li>
+          <li><a href="#strategy">Job Strategy</a></li>
+        </ul>
+      </nav>
+      <button class="nav-cta" type="button" onclick="scrollToSection('submission')">View Submission Details</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO / OVERVIEW -->
+    <section aria-labelledby="overview-title">
+      <div class="hero">
+        <div class="hero-left">
+          <div class="badge">
+            <span class="badge-dot"></span>
+            <span>Final Bootcamp Project · CAPACITI</span>
+          </div>
+          <h1 id="overview-title">Portfolio Development & Career Preparation</h1>
+          <p class="hero-subtitle">
+            Consolidate all bootcamp projects into a professional portfolio, prepare career materials,
+            and create a compelling presentation of your work for potential employers.
+          </p>
+
+          <div class="hero-meta">
+            <span><strong>Type</strong> · Capstone Showcase</span>
+            <span><strong>Focus</strong> · AI/ML Career Readiness</span>
+            <span><strong>Duration</strong> · 7-minute presentation</span>
+          </div>
+
+          <p style="font-size:0.86rem;margin-top:12px;color:#e5e7eb;">
+            This is the last Bootcamp Project you will be doing. It brings together your projects,
+            technical skills, and career story into a single, cohesive portfolio you can share with employers.
+          </p>
+        </div>
+
+        <aside class="hero-right" aria-label="Project quick details">
+          <div class="hero-right-header">
+            <div>
+              <div class="hero-right-label">Project brief</div>
+              <div class="hero-right-title">What you will deliver</div>
+            </div>
+            <span class="project-tag">Bootcamp Final</span>
+          </div>
+
+          <div class="bubble">
+            <strong style="font-size:0.78rem;color:#e5e7eb;">Description:</strong>
+            <br />
+            Consolidate all bootcamp projects into a professional portfolio, prepare career materials, and present
+            your work clearly and confidently to potential employers.
+          </div>
+
+          <div>
+            <div class="hero-right-label">Key components</div>
+            <div class="pill-row">
+              <span class="pill">Portfolio website</span>
+              <span class="pill">Standardized documentation</span>
+              <span class="pill">3+ featured projects</span>
+              <span class="pill">Capstone showcase</span>
+              <span class="pill">AI/ML career materials</span>
+            </div>
+          </div>
+
+          <div class="status-row">
+            <div class="status-tag">
+              <span class="dot"></span>
+              <span>Submission: On Teams only</span>
+            </div>
+            <div class="status-tag">
+              <span class="dot" style="background:#ef4444;"></span>
+              <span>No late submissions accepted</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ENHANCED REQUIREMENTS -->
+    <section id="requirements" aria-labelledby="requirements-title">
+      <article class="card">
+        <div class="card-header">
+          <h2 id="requirements-title">Enhanced requirements</h2>
+          <span class="card-label">What must be included</span>
+        </div>
+
+        <div class="two-column">
+          <div>
+            <h3>Comprehensive portfolio</h3>
+            <ul>
+              <li>
+                Professional portfolio website with consistent branding
+              </li>
+              <li>
+                Standardized documentation for all bootcamp projects
+              </li>
+              <li>
+                Minimum of 3 featured projects with live demos
+              </li>
+              <li>
+                Technical skills and competencies section
+              </li>
+              <li>
+                Professional biography and career objectives
+              </li>
+            </ul>
+
+            <h3 style="margin-top:10px;">Career and presentation</h3>
+            <ul>
+              <li>
+                Develop career materials tailored to AI/ML positions
+              </li>
+              <li>
+                Prepare a compelling capstone showcase presentation
+              </li>
+              <li>
+                Establish professional online presence across platforms
+              </li>
+              <li>
+                Create a personal branding statement highlighting unique skills
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="tagline">
+              Use this project to connect your skills, projects, and story into a single, polished narrative.
+            </p>
+            <div class="chips">
+              <span class="chip">AI/ML targeting</span>
+              <span class="chip">Storytelling</span>
+              <span class="chip">Personal branding</span>
+              <span class="chip">Technical communication</span>
+            </div>
+            <p style="margin-top:10px;">
+              You should be able to send this portfolio to recruiters and hiring managers immediately after
+              the bootcamp as a representation of your work and readiness.
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- TECHNICAL SPECIFICATIONS -->
+    <section aria-labelledby="spec-title">
+      <article class="card">
+        <div class="card-header">
+          <h2 id="spec-title">Technical specifications</h2>
+          <span class="card-label">How your portfolio should work</span>
+        </div>
+
+        <div class="two-column">
+          <div>
+            <ul>
+              <li>
+                Responsive portfolio website compatible with all devices
+              </li>
+              <li>
+                Consistent GitHub repository structure across projects
+              </li>
+              <li>
+                ATS-optimized resume with targeted keywords
+              </li>
+              <li>
+                Professionally formatted LinkedIn profile with project showcases
+              </li>
+              <li>
+                Recorded or live demonstration environment for capstone
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p class="tagline">Your portfolio is a real product employers will interact with.</p>
+            <p>
+              Think about usability, clarity, and access to your code and demos. Ensure links work, repos are organized,
+              and descriptions are clear and up to date.
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- PORTFOLIO & PROJECTS -->
+    <section id="portfolio" aria-labelledby="portfolio-title">
+      <article class="card">
+        <div class="card-header">
+          <h2 id="portfolio-title">Portfolio website, biography, and skills</h2>
+          <span class="card-label">Professional profile</span>
+        </div>
+
+        <div class="two-column">
+          <div>
+            <h3>About / biography</h3>
+            <p>
+              Write a short professional biography about who you are, your technical background, and your interest in
+              AI/ML. Include a clear career objective that explains the kind of roles you are targeting.
+            </p>
+            <ul class="sub-list">
+              <li>Introduce your name, location, and current stage (e.g., CAPACITI graduate).</li>
+              <li>Highlight your strongest technical areas and favourite projects.</li>
+              <li>Explain your short-term and longer-term career goals.</li>
+            </ul>
+
+            <h3 style="margin-top:12px;">Technical skills and competencies</h3>
+            <ul class="sub-list">
+              <li>List languages, tools, and frameworks relevant to AI/ML and software development.</li>
+              <li>Categorise skills (e.g., Programming, Data, Cloud, Tools).</li>
+              <li>Focus on technologies you can demonstrate in your projects.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Profile photo and brand imagery</h3>
+            <p>
+              Use a professional-looking profile photo and consistent visual branding across your website, GitHub, and
+              LinkedIn.
+            </p>
+
+            <!-- Picture tags / image preview -->
+            <div class="field-label">Upload profile or project images (example tags for pictures)</div>
+            <input
+              class="file-input"
+              type="file"
+              id="imageUpload"
+              accept="image/png, image/jpeg, image/jpg"
+              multiple
+            />
+            <div class="preview-box">
+              <div>Image preview area:</div>
+              <div id="imagePreview" class="image-preview-row">
+                <!-- JavaScript will place <img> tags here -->
+              </div>
+            </div>
+
+            <p style="margin-top:10px;font-size:0.8rem;">
+              Under the hood this uses standard HTML image tags:
+              <code>&lt;img src="path/to/image.jpg" alt="Project screenshot" /&gt;</code>
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" aria-labelledby="projects-title">
+      <article class="card">
+        <div class="card-header">
+          <h2 id="projects-title">Featured projects and live demos</h2>
+          <span class="card-label">Minimum of 3 projects</span>
+        </div>
+
+        <p class="tagline">
+          Highlight at least three bootcamp projects, each with a live demo link, GitHub source, and short description.
+        </p>
+
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <div class="project-card">
+            <div class="project-header-row">
+              <div class="project-title">Project 1 – AI LearnMate</div>
+              <div class="project-tag">Featured</div>
+            </div>
+            <p style="font-size:0.8rem;color:#cbd5f5;">
+              AI Learnmate combines three components into one system: the chatbot 
+teaches, the prototype personalizes, and the content generator produces 
+study material
+
+            </p>
+            <div class="project-links">
+              <a href="#" target="_blank">Live demo</a>
+              <a href="#" target="_blank">GitHub repo</a>
+              <a href="#capstone">View capstone details</a>
+            </div>
+            <div class="project-meta">
+              Tech stack: e.g., Python, Flask, scikit-learn, HTML/CSS/JS
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card">
+            <div class="project-header-row">
+              <div class="project-title">Project 2 – Web / API</div>
+              <div class="project-tag">Featured</div>
+            </div>
+            <p style="font-size:0.8rem;color:#cbd5f5;">
+              Summary of a web or integration project from the bootcamp, including any APIs and data sources used.
+            </p>
+            <div class="project-links">
+              <a href="#" target="_blank">Live demo</a>
+              <a href="#" target="_blank">GitHub repo</a>
+            </div>
+            <div class="project-meta">
+              Tech stack: e.g., JavaScript, Node.js, REST APIs, SQL
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card">
+            <div class="project-header-row">
+              <div class="project-title">Project 3 – Data / Dashboard</div>
+              <div class="project-tag">Featured</div>
+            </div>
+            <p style="font-size:0.8rem;color:#cbd5f5;">
+              Overview of a data-focused project, such as analytics, dashboards, or basic machine learning workflows.
+            </p>
+            <div class="project-links">
+              <a href="#" target="_blank">Live demo</a>
+              <a href="#" target="_blank">GitHub repo</a>
+            </div>
+            <div class="project-meta">
+              Tech stack: e.g., Python, Pandas, Plotly, Power BI
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- CAPSTONE PRESENTATION & MEDIA -->
+    <section id="capstone" aria-labelledby="capstone-title">
+      <article class="card">
+        <div class="card-header">
+          <h2 id="capstone-title">Capstone showcase presentation</h2>
+          <span class="card-label">7-minute demo</span>
+        </div>
+
+        <p>
+          Your showcase presentation should be approximately 7 minutes and cover:
+        </p>
+        <ul class="sub-list">
+          <li>Personal introduction and technical background.</li>
+          <li>Project highlights with technical deep-dives.</li>
+          <li>Demonstration of capstone functionality.</li>
+          <li>Future learning and development plans.</li>
+        </ul>
+
+        <div class="media-upload">
+          <!-- VIDEO: tags to upload and preview MP4 -->
+          <div>
+            <h3>Capstone demo video</h3>
+            <p style="font-size:0.85rem;">
+              Use these tags to upload and embed an MP4 or other supported video formats.
+            </p>
+
+            <div class="field-label">Upload MP4 / video file</div>
+            <input
+              class="file-input"
+              type="file"
+              id="videoUpload"
+              accept="video/mp4,video/webm,video/ogg"
+            />
+            <div class="preview-box">
+              <div>Video preview:</div>
+              <video id="videoPreview" controls></video>
+            </div>
+
+            <p style="margin-top:8px;font-size:0.8rem;">
+              HTML example:
+              <code>&lt;video src="demo.mp4" controls&gt;Your browser does not support the video tag.&lt;/video&gt;</code>
+            </p>
+          </div>
+
+          <!-- NOTES & STRUCTURE -->
+          <div>
+            <h3>Presentation structure</h3>
+            <p style="font-size:0.85rem;">
+              Consider structuring your 7-minute talk into clear sections:
+            </p>
+            <ul class="sub-list">
+              <li><strong>1–2 minutes</strong>: Who you are and your technical background.</li>
+              <li><strong>2–3 minutes</strong>: Problem, solution, and architecture of your capstone.</li>
+              <li><strong>2 minutes</strong>: Live or recorded demo of key features.</li>
+              <li><strong>~1 minute</strong>: Future learning and career direction.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- CAREER MATERIALS -->
+    <section id="career" aria-labelledby="career-title">
+      <article class="card">
+        <div class="card-header">
+          <h2 id="career-title">Career materials & online presence</h2>
+          <span class="card-label">AI/ML targeting</span>
+        </div>
+
+        <div class="two-column">
+          <div>
+            <h3>ATS-optimized resume</h3>
+            <ul class="sub-list">
+              <li>Tailor your resume to AI/ML roles you are targeting.</li>
+              <li>Include keywords from job descriptions (tools, skills, methods).</li>
+              <li>Highlight bootcamp projects as “Experience” with measurable outcomes.</li>
+            </ul>
+
+            <h3 style="margin-top:10px;">LinkedIn profile</h3>
+            <ul class="sub-list">
+              <li>Ensure your headline reflects your AI/ML or technical focus.</li>
+              <li>Add your bootcamp projects under “Projects” with links to GitHub and portfolio.</li>
+              <li>Use the same profile photo and branding as your website.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Professional online presence</h3>
+            <ul class="sub-list">
+              <li>GitHub profile with pinned repositories for all key projects.</li>
+              <li>Consistent repo structure, README files, and documentation.</li>
+              <li>Links between portfolio &rarr; GitHub &rarr; LinkedIn to create a clear loop.</li>
+            </ul>
+
+            <h3 style="margin-top:10px;">Personal branding statement</h3>
+            <p style="font-size:0.85rem;">
+              Create a 1–2 sentence statement that highlights your unique skills, experience, and the value you bring to
+              AI/ML-focused teams.
+            </p>
+            <p style="font-size:0.8rem;">
+              Example: “I am an emerging AI/ML practitioner with a strong foundation in data analysis and full-stack
+              development, focused on building practical, production-ready solutions to real business problems.”
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- JOB STRATEGY & EVALUATION -->
+    <section id="strategy" aria-labelledby="strategy-title">
+      <article class="card">
+        <div class="card-header">
+          <h2 id="strategy-title">Job application strategy & evaluation criteria</h2>
+          <span class="card-label">Deliverable & grading</span>
+        </div>
+
+        <div class="two-column">
+          <div>
+            <h3>Job application strategy document</h3>
+            <ul class="sub-list">
+              <li>Target roles and locations you are applying for.</li>
+              <li>Types of companies (startups, corporates, consultancies) you are interested in.</li>
+              <li>Plan for applications per week and networking activities.</li>
+              <li>How you will use your portfolio, LinkedIn, and GitHub in each application.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Evaluation criteria</h3>
+            <ul class="sub-list">
+              <li>Portfolio professionalism and organization.</li>
+              <li>Project documentation quality and consistency.</li>
+              <li>Technical communication clarity.</li>
+              <li>Presentation delivery and engagement.</li>
+              <li>Career material targeting and optimization.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- DELIVERABLES & SUBMISSION -->
+    <section id="submission" aria-labelledby="submission-title">
+      <article class="card">
+        <div class="card-header">
+          <h2 id="submission-title">Deliverables and submission</h2>
+          <span class="card-label">What you must submit</span>
+        </div>
+
+        <div class="two-column">
+          <div>
+            <h3>Deliverables</h3>
+            <ul class="sub-list">
+              <li>Complete portfolio website URL.</li>
+              <li>GitHub profile with pinned repositories for all projects.</li>
+              <li>Technical resume tailored to AI/ML roles.</li>
+              <li>Updated LinkedIn profile with projects and skills.</li>
+              <li>
+                7-minute showcase presentation covering:
+                <ul class="sub-list">
+                  <li>Personal introduction and technical background.</li>
+                  <li>Project highlights with technical deep-dives.</li>
+                  <li>Demonstration of capstone functionality.</li>
+                  <li>Future learning and development plans.</li>
+                </ul>
+              </li>
+              <li>Job application strategy document.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Submission instructions</h3>
+            <p>
+              Submit the project on <strong>Microsoft Teams</strong>. No late submissions will be accepted.
+            </p>
+            <p style="font-size:0.86rem;">
+              Before submitting, verify all links, test your portfolio on multiple devices, and confirm that your
+              GitHub and LinkedIn profiles are public and accessible.
+            </p>
+            <p style="font-size:0.86rem;">
+              You can also keep iterating on this portfolio after the bootcamp to support your job search and
+              long-term career growth.
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div>CAPACITI Tech Career Accelerator · Final Bootcamp Project</div>
+        <div class="submit-note">Reminder: Submit on Teams only · No late submissions will be accepted.</div>
+      </div>
+      <button class="btn-submit" type="button" disabled>
+        Submit on Teams (external step)
+      </button>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll helper
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    // IMAGE UPLOAD PREVIEW
+    const imageUploadInput = document.getElementById("imageUpload");
+    const imagePreviewContainer = document.getElementById("imagePreview");
+
+    if (imageUploadInput && imagePreviewContainer) {
+      imageUploadInput.addEventListener("change", () => {
+        const files = imageUploadInput.files;
+        imagePreviewContainer.innerHTML = "";
+        if (!files || !files.length) {
+          imagePreviewContainer.textContent = "No images selected yet.";
+          return;
+        }
+        Array.from(files).forEach((file) => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const img = document.createElement("img");
+            img.src = e.target.result;
+            img.alt = file.name;
+            imagePreviewContainer.appendChild(img);
+          };
+          reader.readAsDataURL(file);
+        });
+      });
+    }
+
+    // VIDEO UPLOAD PREVIEW
+    const videoUploadInput = document.getElementById("videoUpload");
+    const videoPreviewElement = document.getElementById("videoPreview");
+
+    if (videoUploadInput && videoPreviewElement) {
+      videoUploadInput.addEventListener("change", () => {
+        const file = videoUploadInput.files && videoUploadInput.files[0];
+        if (!file) {
+          videoPreviewElement.removeAttribute("src");
+          videoPreviewElement.load();
+          return;
+        }
+        const url = URL.createObjectURL(file);
+        videoPreviewElement.src = url;
+        videoPreviewElement.load();
+      });
+    }
+  </script>
+</body>
+</html>
